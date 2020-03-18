@@ -1,0 +1,3188 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## ЧАСТЬ I. Решите задания используя только стандартные методы Python 3"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 1. Импортируйте число e из библиотеки math и выведите его с окргулением до 4 цифр после запятой"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "2.7183\n"
+     ]
+    }
+   ],
+   "source": [
+    "from math import e\n",
+    "print(round(e, 4))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 2. Вычислите целую часть результата деления 100 на 7. Убедитесь, что её тип – целое число."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'int'>\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(type(100 // 7))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 3. Создайте список с квадратами целых чисел от 12 до 4 с шагом 2 не делящимися на 5."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "144 64 36 16\n"
+     ]
+    }
+   ],
+   "source": [
+    "lst = [x ** 2 for x in range(12, 3, -2) if x % 5 != 0]\n",
+    "print(*lst)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 4.\tОтсортируйте полученный в пункте 3 список относительно модуля разницы между элементами этого списка и числом 50."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[(64, 14), (36, 14), (16, 34), (144, 94)]"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "module_tuples = [(item, abs(item-50)) for item in lst]\n",
+    "sorted(module_tuples, key=lambda item: item[1]) "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 5. Создайте множество (set) содержащее все 26 маленькие буквы латинского алфавита."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "{'a',\n",
+       " 'b',\n",
+       " 'c',\n",
+       " 'd',\n",
+       " 'e',\n",
+       " 'f',\n",
+       " 'g',\n",
+       " 'h',\n",
+       " 'i',\n",
+       " 'j',\n",
+       " 'k',\n",
+       " 'l',\n",
+       " 'm',\n",
+       " 'n',\n",
+       " 'o',\n",
+       " 'p',\n",
+       " 'q',\n",
+       " 'r',\n",
+       " 's',\n",
+       " 't',\n",
+       " 'u',\n",
+       " 'v',\n",
+       " 'w',\n",
+       " 'x',\n",
+       " 'y',\n",
+       " 'z'}"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import string\n",
+    "set(string.ascii_lowercase)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 6.\tСоздайте список, содержащий числа с повторениями. Используя словарь, подсчитайте, сколько раз каждое число встречалось в этом списке, и напечатайте содержимое словаря"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Counter({1: 4, 0: 2})\n"
+     ]
+    }
+   ],
+   "source": [
+    "from collections import Counter\n",
+    "\n",
+    "lst = [1] * 4 + [0] * 2\n",
+    "c = Counter(lst)\n",
+    "print(c)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "{1: 4, 0: 2}\n"
+     ]
+    }
+   ],
+   "source": [
+    "d = {}\n",
+    "for item in lst:\n",
+    "    if item not in d:\n",
+    "        d[item] = 1\n",
+    "    else:\n",
+    "        d[item] += 1\n",
+    "print(d)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 7. Реализуйте функцию от трёх аргументов a, b и c находящую вещественные корни уравнения ax2 + bx + c = 0, с нулевыми значениями аргументов по умолчанию"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from math import sqrt\n",
+    "def equation(a=0, b=0, c=0):\n",
+    "    d = b ** 2 - 4 * a * c\n",
+    "    if a != 0:\n",
+    "        if d < 0:\n",
+    "            return 'No roots'\n",
+    "        elif d == 0:\n",
+    "            return (-b + sqrt(d)) / (2 * a)\n",
+    "        else:\n",
+    "            return (-b + sqrt(d)) / (2 * a), \\\n",
+    "                   (-b - sqrt(d)) / (2 * a) \n",
+    "    else:\n",
+    "        if b != 0:\n",
+    "            return -c / b\n",
+    "        else:\n",
+    "            if c != 0:\n",
+    "                return 'Enter right coefficient'\n",
+    "            else:\n",
+    "                return 0\n",
+    "            \n",
+    "assert equation() == 0\n",
+    "assert equation(0, 1, 42) == -42\n",
+    "assert equation(3, -14, -5) == (5, -1/3)\n",
+    "assert equation(3, 1, 42) == 'No roots'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 8.\tРеализуйте класс Point с полями x,y заполняемыми в конструкторе"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Point:\n",
+    "    def __init__(self, x, y):\n",
+    "        self.x = x\n",
+    "        self.y = y\n",
+    "        \n",
+    "p = Point(4, 2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 9. Реализуйте класс Circle наследника класса Point с дополнительным полем r и методом inside(p) проверяющим, что круг одержит точку p."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "class Circle(Point):\n",
+    "    def __init__(self, center_x, center_y, r):\n",
+    "        self.center_x = center_x\n",
+    "        self.center_y = center_y\n",
+    "        self.r = r\n",
+    "        \n",
+    "    def inside(self, p):\n",
+    "        eq = (p.x - self.center_x) ** 2 + \\\n",
+    "             (p.y - self.center_y) ** 2\n",
+    "        if eq <= self.r ** 2:\n",
+    "            return True\n",
+    "        return False\n",
+    "    \n",
+    "c = Circle(0, 0, 10)\n",
+    "assert c.inside(p) == True\n",
+    "assert c.inside(Point(11, 11)) == False"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 10. Реализуйте метод класса Point, принимающий другой объект класса Point и вычисляющий эвклидово расстояние до него"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from math import sqrt\n",
+    "\n",
+    "class Point:\n",
+    "    def __init__(self, x, y):\n",
+    "        self.x = x\n",
+    "        self.y = y\n",
+    "        \n",
+    "    def euclidean_distance(self, second_point):\n",
+    "        return sqrt((self.x - second_point.x) ** 2 + \\\n",
+    "                    (self.y - second_point.y) ** 2)\n",
+    "    \n",
+    "p1 = Point(0, 0)\n",
+    "p2 = Point(2, 0)\n",
+    "\n",
+    "assert p1.euclidean_distance(p2) == 2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## ЧАСТЬ II. Решите задачи используя библиотеку NumPy"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 11. Создайте матрицу 4x4, значения элементов которой варьируются от 0 до 15"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[ 0,  1,  2,  3],\n",
+       "       [ 4,  5,  6,  7],\n",
+       "       [ 8,  9, 10, 11],\n",
+       "       [12, 13, 14, 15]])"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.arange(16).reshape(4,4)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 12. Найдите индексы ненулевых элементов из списка [1,2,0,0,4,0,5,7,8,0,0,0]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "(array([0, 1, 4, 6, 7, 8]),)\n"
+     ]
+    }
+   ],
+   "source": [
+    "arr = np.array([1,2,0,0,4,0,5,7,8,0,0,0])\n",
+    "mask = (arr != 0)\n",
+    "print(np.where(mask))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 13. Создайте единичную матрицу размера 3х3"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[1., 1., 1.],\n",
+       "       [1., 1., 1.],\n",
+       "       [1., 1., 1.]])"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.ones((3,3))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 14. Создайте матрицу 10х10, заполните её случайными значениями и найдите максимальный и минимальный элементы"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[[0.33472821 0.21579536 0.43814057 0.00963406 0.34469716 0.80930933\n",
+      "  0.67102871 0.5475776  0.83986974 0.93333506]\n",
+      " [0.80345136 0.65213893 0.46478267 0.77969328 0.80240746 0.77890638\n",
+      "  0.21290007 0.01391833 0.35600319 0.49592736]\n",
+      " [0.09733032 0.52667471 0.16575212 0.09130699 0.87526458 0.50517118\n",
+      "  0.53276388 0.70892987 0.87833125 0.32512921]\n",
+      " [0.07776066 0.22939551 0.82823816 0.19503618 0.41715616 0.29314112\n",
+      "  0.70470897 0.39037126 0.11828776 0.12260491]\n",
+      " [0.0266379  0.47566635 0.45474175 0.76898858 0.75555681 0.08471131\n",
+      "  0.01933007 0.21469184 0.93830978 0.45062452]\n",
+      " [0.3883591  0.16280223 0.53062744 0.87174347 0.64957057 0.07661282\n",
+      "  0.76054266 0.48474029 0.82763784 0.31736713]\n",
+      " [0.48534264 0.5522444  0.52896713 0.90330229 0.47616309 0.62570607\n",
+      "  0.26231647 0.21440837 0.89424249 0.55195164]\n",
+      " [0.51799026 0.83320251 0.62209797 0.59171196 0.04815298 0.54699254\n",
+      "  0.91577886 0.34041288 0.47763908 0.12090119]\n",
+      " [0.61994431 0.14375272 0.28868096 0.67057992 0.08277868 0.50519166\n",
+      "  0.1785988  0.27004949 0.29766913 0.25654975]\n",
+      " [0.9735437  0.62134723 0.58635674 0.26147872 0.70633261 0.9375129\n",
+      "  0.39928617 0.62233424 0.65321671 0.23676386]]\n",
+      "max: 0.9735437005191091, min: 0.009634058075385532\n"
+     ]
+    }
+   ],
+   "source": [
+    "m = np.random.rand(10, 10)\n",
+    "print(m)\n",
+    "print(f'max: {m.max()}, min: {m.min()}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 15. Создайте матрицу 5х5 и расположите в ней числа 1, 2, 3, 4 под главной диагональю"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0, 0, 0, 0, 0],\n",
+       "       [1, 0, 0, 0, 0],\n",
+       "       [0, 2, 0, 0, 0],\n",
+       "       [0, 0, 3, 0, 0],\n",
+       "       [0, 0, 0, 4, 0]])"
+      ]
+     },
+     "execution_count": 17,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rng = np.arange(1, 5)\n",
+    "np.diag(rng, -1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 16. Перемножьте случайные матрицы размерностей 5х3 и 3х2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[0.65821052, 0.59307633],\n",
+       "       [0.4518949 , 0.51741692],\n",
+       "       [0.43013561, 0.64893781],\n",
+       "       [0.96191081, 1.34819474],\n",
+       "       [0.94458268, 1.39204795]])"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "np.dot(np.random.rand(5,3), np.random.rand(3,2))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 17. Найдите число из списка t, наиболее близкое по величине к числу a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "a = 2.39\n",
+    "t = [0, 1, 1.2, 2, 3, 9]\n",
+    "\n",
+    "idx = np.array([np.abs(t_i-a) for t_i in t]).argmin()\n",
+    "assert t[idx] == 2"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 18. Создайте массив из 10 элементов и поменяйте значение его наибольшего элемента на 0 "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0])"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "arr = np.arange(0, 11)\n",
+    "arr[arr.argmax()] = 0\n",
+    "arr"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 19. Создайте матрицу 5x5 и поменяйте в ней местами 2 и 3 строку"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([[15, 16, 17, 18, 19],\n",
+       "       [ 5,  6,  7,  8,  9],\n",
+       "       [ 0,  1,  2,  3,  4],\n",
+       "       [15, 16, 17, 18, 19],\n",
+       "       [20, 21, 22, 23, 24]])"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix = np.arange(0, 25).reshape((5, 5))\n",
+    "matrix[[0, 2]] = matrix[[3, 0]]\n",
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "### 20. Создайте случайную целочисленную матрицу и найдите наиболее часто встречающийся в ней элемент"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[8 0 9 7 3 6 5 5 6 8 9 4 1 3 4 0 6 9 5 9 1 7 1 4 5 8 0 6 5 8 7 9 4 7 8 7 2\n",
+      " 4 2 5 3 7 9 7 2 5 8 6 3 9 1 9 8 0 7 8 2 1 4 6 0 2 6 5 1 8 6 2 3 3 9 4 2 4\n",
+      " 7 0 8 0 2 3 1 8 8 2 7 7 9 3 2 9 5 7 5 0 7 6 4 4 6 0]\n",
+      "The most frequent value: 5\n"
+     ]
+    }
+   ],
+   "source": [
+    "matrix = np.random.randint(10, size=(100))\n",
+    "print(matrix)\n",
+    "print(f'The most frequent value: '\n",
+    "      f'{matrix[np.bincount(matrix).argmax()]}')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Часть III. Прочитайте краткий мануал по библиотеке pandas и выполните оставшиеся задания"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "sjJVY4CYcxNW"
+   },
+   "source": [
+    "Pandas - это библиотека Python, предоставляющая широкие возможности для анализа данных. С ее помощью очень удобно загружать, обрабатывать и анализировать табличные данные с помощью SQL-подобных запросов. В связке с библиотеками Matplotlib и Seaborn появляется возможность удобного визуального анализа табличных данных.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "G5ABRBGldX6c"
+   },
+   "source": [
+    "Для использования библиотек их необходимо импортировать, что можно сделать с помощью команды import. После ключевого слова import указывается название библиотеки, а после as - ее краткое название (алиас), которое мы будем использовать в коде для краткого обозначения этой библиотеки."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "yslJCsMpcHZW"
+   },
+   "outputs": [],
+   "source": [
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "zIg8XEVteZe_"
+   },
+   "source": [
+    "Основными структурами данных в Pandas являются классы Series и DataFrame. Первый из них представляет собой одномерный индексированный массив данных некоторого фиксированного типа (его можно интеерпретировать как индексированный столбец таблицы). Второй - это двухмерная структура данных, представляющая собой таблицу, каждый столбец которой содержит данные одного типа. Можно представлять её как словарь объектов типа Series. Структура DataFrame отлично подходит для представления реальных данных: строки соответствуют признаковым описаниям отдельных объектов, а столбцы соответствуют признакам."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "m7BEyqMjs8L-"
+   },
+   "source": [
+    "## Чтение из файла и первичный анализ\n",
+    "Чаще всего, данные, которые мы будем анализировать, готовить  и использовать для обучения моделей, не формируются самостоятельно, а берутся из готового дататсета. Рассмотрим чтение датасета (DataFrame) из файла с расширением csv. В качестве примера возьмем titanic_train.csv, который содержить данные о пассажирах Титаника. Полный датасет titanic был разделен на 2 части - тренировочную и тестовую. Именно с тренировочной частью мы и будем работать. Датасет titanic предоставлен в рабочей папке Лаб_1, а также вы можете его скачать (titanic_train.csv) по ссылке https://www.kaggle.com/tedllh/titanic-train#titanic_train.csv. Если вы работаете на платформе Goggle Colab, необходимо сделать upload файла в вашу рабочую директорию ( в меню ноутбука слева  найти и перейти на Files, нажать Upload и выбрать файл для загрузки)\n",
+    "\n",
+    "Внимание! Проверьте, что файл находиться в папке content, если его там нет, то нажмите на нее правой кнопкой и upload. \n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "-W69sFlrtNtF"
+   },
+   "source": [
+    "###Чтение данных"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "2uCoeFJoqWpa"
+   },
+   "source": [
+    "Для чтения csv файла используем функцию pd.read_csv"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/",
+     "height": 391
+    },
+    "colab_type": "code",
+    "id": "xqXF6_9LqpRn",
+    "outputId": "cd880634-b2ef-483a-86f9-9e73489da05b"
+   },
+   "outputs": [],
+   "source": [
+    "df = pd.read_csv('titanic_train.csv')"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "6rtdfLfItnIc"
+   },
+   "source": [
+    "Посмотрим тип переменной df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "KspQ_kC8tl3D"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.frame.DataFrame"
+      ]
+     },
+     "execution_count": 25,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(df)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "-ryV8-iUMc1O"
+   },
+   "source": [
+    "### Первичный анализ"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "11Jgrd0KtwgV"
+   },
+   "source": [
+    "После того, как мы считали данные, посмотрим первые несколько записей датафрейма (если в скобках после функции head не указать нужное количество записей, то по умолчанию будут выведены первые 5 записей датафрейма). Если вместо таблицы вы видите  \"кашу\" из данных, разделенных \";\", значит, ваш csv файл использует в качестве разделителя \";\", а не \",\". И для корректного чтения данных, нужно задать разделитель в функции чтения, например df = pd.read_csv('proba.csv', sep=\";\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "QmXrbhoTuJRG"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>PassengerId</th>\n",
+       "      <th>Survived</th>\n",
+       "      <th>Pclass</th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Sex</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>SibSp</th>\n",
+       "      <th>Parch</th>\n",
+       "      <th>Ticket</th>\n",
+       "      <th>Fare</th>\n",
+       "      <th>Cabin</th>\n",
+       "      <th>Embarked</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Braund, Mr. Owen Harris</td>\n",
+       "      <td>male</td>\n",
+       "      <td>22.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>A/5 21171</td>\n",
+       "      <td>7.2500</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>2</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>\n",
+       "      <td>female</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>PC 17599</td>\n",
+       "      <td>71.2833</td>\n",
+       "      <td>C85</td>\n",
+       "      <td>C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Heikkinen, Miss. Laina</td>\n",
+       "      <td>female</td>\n",
+       "      <td>26.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>STON/O2. 3101282</td>\n",
+       "      <td>7.9250</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>4</td>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>\n",
+       "      <td>female</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>113803</td>\n",
+       "      <td>53.1000</td>\n",
+       "      <td>C123</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Allen, Mr. William Henry</td>\n",
+       "      <td>male</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>373450</td>\n",
+       "      <td>8.0500</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>6</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Moran, Mr. James</td>\n",
+       "      <td>male</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>330877</td>\n",
+       "      <td>8.4583</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>Q</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>6</th>\n",
+       "      <td>7</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>McCarthy, Mr. Timothy J</td>\n",
+       "      <td>male</td>\n",
+       "      <td>54.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>17463</td>\n",
+       "      <td>51.8625</td>\n",
+       "      <td>E46</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>8</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Palsson, Master. Gosta Leonard</td>\n",
+       "      <td>male</td>\n",
+       "      <td>2.0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>1</td>\n",
+       "      <td>349909</td>\n",
+       "      <td>21.0750</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>8</th>\n",
+       "      <td>9</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)</td>\n",
+       "      <td>female</td>\n",
+       "      <td>27.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2</td>\n",
+       "      <td>347742</td>\n",
+       "      <td>11.1333</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>9</th>\n",
+       "      <td>10</td>\n",
+       "      <td>1</td>\n",
+       "      <td>2</td>\n",
+       "      <td>Nasser, Mrs. Nicholas (Adele Achem)</td>\n",
+       "      <td>female</td>\n",
+       "      <td>14.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>237736</td>\n",
+       "      <td>30.0708</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>C</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   PassengerId  Survived  Pclass  \\\n",
+       "0            1         0       3   \n",
+       "1            2         1       1   \n",
+       "2            3         1       3   \n",
+       "3            4         1       1   \n",
+       "4            5         0       3   \n",
+       "5            6         0       3   \n",
+       "6            7         0       1   \n",
+       "7            8         0       3   \n",
+       "8            9         1       3   \n",
+       "9           10         1       2   \n",
+       "\n",
+       "                                                Name     Sex   Age  SibSp  \\\n",
+       "0                            Braund, Mr. Owen Harris    male  22.0      1   \n",
+       "1  Cumings, Mrs. John Bradley (Florence Briggs Th...  female  38.0      1   \n",
+       "2                             Heikkinen, Miss. Laina  female  26.0      0   \n",
+       "3       Futrelle, Mrs. Jacques Heath (Lily May Peel)  female  35.0      1   \n",
+       "4                           Allen, Mr. William Henry    male  35.0      0   \n",
+       "5                                   Moran, Mr. James    male   NaN      0   \n",
+       "6                            McCarthy, Mr. Timothy J    male  54.0      0   \n",
+       "7                     Palsson, Master. Gosta Leonard    male   2.0      3   \n",
+       "8  Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)  female  27.0      0   \n",
+       "9                Nasser, Mrs. Nicholas (Adele Achem)  female  14.0      1   \n",
+       "\n",
+       "   Parch            Ticket     Fare Cabin Embarked  \n",
+       "0      0         A/5 21171   7.2500   NaN        S  \n",
+       "1      0          PC 17599  71.2833   C85        C  \n",
+       "2      0  STON/O2. 3101282   7.9250   NaN        S  \n",
+       "3      0            113803  53.1000  C123        S  \n",
+       "4      0            373450   8.0500   NaN        S  \n",
+       "5      0            330877   8.4583   NaN        Q  \n",
+       "6      0             17463  51.8625   E46        S  \n",
+       "7      1            349909  21.0750   NaN        S  \n",
+       "8      2            347742  11.1333   NaN        S  \n",
+       "9      0            237736  30.0708   NaN        C  "
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "kUufGVpKvk1A"
+   },
+   "source": [
+    "Давайте посмотрим, что это за данные. Достаточно часто датасеты имеют краткое описание содержимого. Например, что означает тот или иной столбец, какие значения используются для заполнения и т.д. Или значения признаков интуитивно понятны. В нашем случае, мы имеем следующие данные:\n",
+    "каждая строка - это сведения об отдельном пассажире. Строка содержит:\n",
+    "*   PassengerId - идентификатор пассажира (проще говоря, порядковый номер строки)\n",
+    "*   Survived - признак, выжил ли пассажир после крушения (0 - погиб, 1 - выжил)\n",
+    "*   Pclass - в каком классе ехал пассажир (1, 2 или 3)\n",
+    "*   Name - имя пассажира\n",
+    "*   Sex - пол (male - мужской, female - женский)\n",
+    "*   Age - возраст\n",
+    "*   SibSp - количество родственников (по горизонтали - супруг, братья, сестры) на борту\n",
+    "*   Parch - количество родственников (по вертикали - родители, дети) на борту \n",
+    "*   Ticket - номер билета\n",
+    "*   Fare - цена билета\n",
+    "*   Cabin - номер каюты\n",
+    "*   Embarked - порт посадки (C — Cherbourg, Q — Queenstown, S — Southampton)\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "MBgJoJYD4HCf"
+   },
+   "source": [
+    "Команда shape() показывате размерность датафрейма"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "Lpg2DdiN4NL9"
+   },
+   "source": [
+    "Мы видим, что в нашем датафрейме 891 строка (то есть, сведения о 891 пассажире) и 12 столбцов признаков"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "REsrbW9YqmXg"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(891, 12)"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.shape"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "16kl-_TqebjJ"
+   },
+   "source": [
+    "Команда columns.values() показывате название всех признаков"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "8th1M4uueUsZ"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array(['PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age', 'SibSp',\n",
+       "       'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'], dtype=object)"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.columns.values"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ZOnYvyDfEuRr"
+   },
+   "source": [
+    "Также полезно посмотреть метод info, который показывает краткую статистику по набору данных"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "7JonSzixE6Y7"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "<class 'pandas.core.frame.DataFrame'>\n",
+      "RangeIndex: 891 entries, 0 to 890\n",
+      "Data columns (total 12 columns):\n",
+      " #   Column       Non-Null Count  Dtype  \n",
+      "---  ------       --------------  -----  \n",
+      " 0   PassengerId  891 non-null    int64  \n",
+      " 1   Survived     891 non-null    int64  \n",
+      " 2   Pclass       891 non-null    int64  \n",
+      " 3   Name         891 non-null    object \n",
+      " 4   Sex          891 non-null    object \n",
+      " 5   Age          714 non-null    float64\n",
+      " 6   SibSp        891 non-null    int64  \n",
+      " 7   Parch        891 non-null    int64  \n",
+      " 8   Ticket       891 non-null    object \n",
+      " 9   Fare         891 non-null    float64\n",
+      " 10  Cabin        204 non-null    object \n",
+      " 11  Embarked     889 non-null    object \n",
+      "dtypes: float64(2), int64(5), object(5)\n",
+      "memory usage: 83.7+ KB\n"
+     ]
+    }
+   ],
+   "source": [
+    "df.info()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "4ujf8CzK4bdJ"
+   },
+   "source": [
+    "Можно увидеть, что не все признаки у нас заполнены в каждой строке,для некоторых признаков есть пропуски. Например, у нас 891 строка, а Age (возраст) заполнен только в 714 строках. Совсем мало значений в столбце Cabin. \n",
+    "\n",
+    "Есть несколько вариантов работы с такими строками: \n",
+    "* их можно оставить без изменений, если признак, в котором пропущены данные, малозначим;\n",
+    "* можно удалить все строки, в которых есть пустые значения;\n",
+    "* можно заполнить их какими-либо значениями (0, медианой или любыми другими константами).\n",
+    "\n",
+    "Метод info так же показывает какого типа данные в том или ином столбце: цифровые (int или float), текстовые и т.д. В последней строке указан объем памяти, которую занимает датафрейм. При больших объемах данных это позволяет оценить хватит ли вам ресурсов для загрузки в память полного датасета"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "A28wj4YRH0pc"
+   },
+   "source": [
+    "Еще один полезный метод для начального анализа данных - метод describe(), который выдает краткую статистику по числовым признакам: среднее, стандартное отклонение, минимум, максимум, медианы, квартили и т.д. Самостоятельно посмотрите, что означает каждое понятие. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "AeSTWWppE4-3"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>PassengerId</th>\n",
+       "      <th>Survived</th>\n",
+       "      <th>Pclass</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>SibSp</th>\n",
+       "      <th>Parch</th>\n",
+       "      <th>Fare</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>count</th>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>714.000000</td>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>891.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>mean</th>\n",
+       "      <td>446.000000</td>\n",
+       "      <td>0.383838</td>\n",
+       "      <td>2.308642</td>\n",
+       "      <td>29.699118</td>\n",
+       "      <td>0.523008</td>\n",
+       "      <td>0.381594</td>\n",
+       "      <td>32.204208</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>std</th>\n",
+       "      <td>257.353842</td>\n",
+       "      <td>0.486592</td>\n",
+       "      <td>0.836071</td>\n",
+       "      <td>14.526497</td>\n",
+       "      <td>1.102743</td>\n",
+       "      <td>0.806057</td>\n",
+       "      <td>49.693429</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>min</th>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>0.420000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>25%</th>\n",
+       "      <td>223.500000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>2.000000</td>\n",
+       "      <td>20.125000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>7.910400</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>50%</th>\n",
+       "      <td>446.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>28.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>14.454200</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>75%</th>\n",
+       "      <td>668.500000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>38.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>0.000000</td>\n",
+       "      <td>31.000000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>max</th>\n",
+       "      <td>891.000000</td>\n",
+       "      <td>1.000000</td>\n",
+       "      <td>3.000000</td>\n",
+       "      <td>80.000000</td>\n",
+       "      <td>8.000000</td>\n",
+       "      <td>6.000000</td>\n",
+       "      <td>512.329200</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "       PassengerId    Survived      Pclass         Age       SibSp  \\\n",
+       "count   891.000000  891.000000  891.000000  714.000000  891.000000   \n",
+       "mean    446.000000    0.383838    2.308642   29.699118    0.523008   \n",
+       "std     257.353842    0.486592    0.836071   14.526497    1.102743   \n",
+       "min       1.000000    0.000000    1.000000    0.420000    0.000000   \n",
+       "25%     223.500000    0.000000    2.000000   20.125000    0.000000   \n",
+       "50%     446.000000    0.000000    3.000000   28.000000    0.000000   \n",
+       "75%     668.500000    1.000000    3.000000   38.000000    1.000000   \n",
+       "max     891.000000    1.000000    3.000000   80.000000    8.000000   \n",
+       "\n",
+       "            Parch        Fare  \n",
+       "count  891.000000  891.000000  \n",
+       "mean     0.381594   32.204208  \n",
+       "std      0.806057   49.693429  \n",
+       "min      0.000000    0.000000  \n",
+       "25%      0.000000    7.910400  \n",
+       "50%      0.000000   14.454200  \n",
+       "75%      0.000000   31.000000  \n",
+       "max      6.000000  512.329200  "
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.describe()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "iTPCktTEMkTX"
+   },
+   "source": [
+    "##Доступ к элементам данных"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "X4cp32dRx1Hz"
+   },
+   "source": [
+    "###Доступ к элементам DataFrame"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "b8gbfFvZ4bgu"
+   },
+   "source": [
+    "Разберемся как посмотреть какие-то конкретные значения в датафрейме. Наш датафрейм представляет собой таблицу, состоящую из строк и столбцов. Обратиться к конкретному столбцу можно используя его имя. Например, выведем первые 10 строк из столбца с возрастом пассажиров"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "e7sx4pwMJtit"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0    22.0\n",
+       "1    38.0\n",
+       "2    26.0\n",
+       "3    35.0\n",
+       "4    35.0\n",
+       "5     NaN\n",
+       "6    54.0\n",
+       "7     2.0\n",
+       "8    27.0\n",
+       "9    14.0\n",
+       "Name: Age, dtype: float64"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df['Age'].head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "U2RLfi_1ewLN"
+   },
+   "source": [
+    "Второй способ обращения - через \".\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "Jrd-z4lxevXA"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0    22.0\n",
+       "1    38.0\n",
+       "2    26.0\n",
+       "3    35.0\n",
+       "4    35.0\n",
+       "5     NaN\n",
+       "6    54.0\n",
+       "7     2.0\n",
+       "8    27.0\n",
+       "9    14.0\n",
+       "Name: Age, dtype: float64"
+      ]
+     },
+     "execution_count": 32,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Age.head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "SXpeD9dsJ2w6"
+   },
+   "source": [
+    "Столбец таблицы - это объек Pandas Series, убедимся в этом определив тип полученного объекта. Этот объект проиндексирован (слева печатаются индексы). В нижней строке есть информацию о его имени и типе значений.\n",
+    "Кроме того, здесь хорошо видны пропуски (незаполненные значения) в некоторых строках (они обозначены NaN - Not-A-Number)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "IPvr1mjfKnwF"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "pandas.core.series.Series"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "type(df['Age'])"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ycHZL4wLMNc8"
+   },
+   "source": [
+    "Кроме обращения к столбцу по имени, можно использовать индексацию с помощью методов loc и iloc"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "Ne8BeNj5M1QQ"
+   },
+   "source": [
+    "Метод loc выдает нам подматрицу, используя индексы строк и столбцов. Первый аргумент отвечает за количество записей (как с начала, так и при желании с любого места), а второй - за отраженные в подматрице признаки.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "t6_jFUPbfblx"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Pclass</th>\n",
+       "      <th>Fare</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>3</td>\n",
+       "      <td>7.2500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>71.2833</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>3</td>\n",
+       "      <td>7.9250</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>53.1000</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>3</td>\n",
+       "      <td>8.0500</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5</th>\n",
+       "      <td>3</td>\n",
+       "      <td>8.4583</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Pclass     Fare\n",
+       "0       3   7.2500\n",
+       "1       1  71.2833\n",
+       "2       3   7.9250\n",
+       "3       1  53.1000\n",
+       "4       3   8.0500\n",
+       "5       3   8.4583"
+      ]
+     },
+     "execution_count": 34,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.loc[0:5, ['Pclass', 'Fare']]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "abcixFoA4bug"
+   },
+   "source": [
+    "Метод iloc работает схожим образом, за исключением того, что второй аргумент теперь тоже индексы, то есть отражает количество признаков.\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "Zg4NhgBKk0qV"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Survived</th>\n",
+       "      <th>Pclass</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>1</td>\n",
+       "      <td>1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "   Survived  Pclass\n",
+       "0         0       3\n",
+       "1         1       1\n",
+       "2         1       3\n",
+       "3         1       1\n",
+       "4         0       3"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.iloc[0:5, 1:3]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "2W_MTx-WyK6w"
+   },
+   "source": [
+    "# Доступ к элементам Series"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "XxsGabTz4b4T"
+   },
+   "source": [
+    "Для примера создадим два объекта Series"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "I6n9ftFxzWmI"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "0      one\n",
+      "1      two\n",
+      "2    three\n",
+      "3     four\n",
+      "4     five\n",
+      "dtype: object\n"
+     ]
+    }
+   ],
+   "source": [
+    "s1 = pd.Series([\"one\", \"two\", \"three\", \"four\", \"five\"]) # передаем список, индексы проставляются автоматически с 0\n",
+    "print(s1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "oN05wJZczWmc"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a    1\n",
+      "b    2\n",
+      "c    3\n",
+      "d    4\n",
+      "e    5\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "s2 = pd.Series([1, 2, 3, 4, 5], ['a', 'b', 'c', 'd', 'e'])  # передаем список, индексы заданы символами от 'a' до 'e'\n",
+    "print(s2)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "fu4bnCJ-zWmh"
+   },
+   "source": [
+    "К элементам Series можно обращаться по численному индексу через \"[ ]\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "JTmUpLwLzWmi"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 38,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[2] # второй элемент серии s2 (индексация с 0)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "IJsaC78YzWmm"
+   },
+   "source": [
+    "К элементам Series можно обращаться по метке:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "ke_GSzJGzWmn"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "3"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2['c']"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "BOFYDD-BzWmr"
+   },
+   "source": [
+    "К элементам Series можно применять так называемые slice (срезы) через ':'.\n",
+    "Срезами является часть серии до или после определенного элемента"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "_IMv8alczWmr"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "a    1\n",
+       "b    2\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[:2] # все элементы до второго включительно"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "4zE4QBF5zWmt"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "c    3\n",
+       "d    4\n",
+       "e    5\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 41,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[2:] # второй и все элементы после второго до конца"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "znQ0ekeTzWmw"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "c    3\n",
+       "d    4\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[2:4] # все элементы со второго по четвертый не включительно. Последний никогда не включается."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "6QZ12o-Hmjnr"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "a    1\n",
+       "b    2\n",
+       "c    3\n",
+       "d    4\n",
+       "e    5\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 43,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[:] # все элементы"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "nYQFy1gyzWmy"
+   },
+   "source": [
+    "В поле для индекса можно поместить условное выражение.\n",
+    "Данное выражение можно перевести как вопрос, является ли значение элемента (признака) меньшим или равным двум."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "j_MWQDjnzWmy"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "a    1\n",
+       "b    2\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[s2 <= 2]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ckQnNZAjn4mL"
+   },
+   "source": [
+    "Или даже несколько условных выражений, отделенных \"( )\". \n",
+    "\n",
+    "Если соединить два условия знаком \"&\", то результат будет удовлетворять двум условиям, а если знаком \"|\", то хотя бы одному из них."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "tFa7rL-mn45B"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "b    2\n",
+       "c    3\n",
+       "d    4\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 45,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[(s2 >= 2) & (s2 <=4)]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "8Kwvc9xSomoo"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "a    1\n",
+       "b    2\n",
+       "e    5\n",
+       "dtype: int64"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "s2[(s2 <= 2) | (s2 == 5)]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "cXVo5eJvo5Hc"
+   },
+   "source": [
+    "Важно, что в условных выражениях равенство пишется как \"==\" (два знака \"равно\")."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "kagxI_NfzWm1"
+   },
+   "source": [
+    "Со структурами Series можно работать как с векторами: складывать, умножать вектор на число и т.п."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "2mAOcSTgzWm2"
+   },
+   "outputs": [],
+   "source": [
+    "s3 = s2 + 10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "dMhJC4XjzWm4"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "a    11\n",
+      "b    12\n",
+      "c    13\n",
+      "d    14\n",
+      "e    15\n",
+      "dtype: int64\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(s3)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "gnyZuP3taQhB"
+   },
+   "source": [
+    "## Примеры анализа информации"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "o76V1-_t09-T"
+   },
+   "source": [
+    "Для примера отберем пассажиров мужского пола, возраст которых меньше сорока лет."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "bQ0Q-A1SxTXJ"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>PassengerId</th>\n",
+       "      <th>Survived</th>\n",
+       "      <th>Pclass</th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Sex</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>SibSp</th>\n",
+       "      <th>Parch</th>\n",
+       "      <th>Ticket</th>\n",
+       "      <th>Fare</th>\n",
+       "      <th>Cabin</th>\n",
+       "      <th>Embarked</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Braund, Mr. Owen Harris</td>\n",
+       "      <td>male</td>\n",
+       "      <td>22.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>A/5 21171</td>\n",
+       "      <td>7.250</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>5</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Allen, Mr. William Henry</td>\n",
+       "      <td>male</td>\n",
+       "      <td>35.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>373450</td>\n",
+       "      <td>8.050</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>7</th>\n",
+       "      <td>8</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Palsson, Master. Gosta Leonard</td>\n",
+       "      <td>male</td>\n",
+       "      <td>2.0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>1</td>\n",
+       "      <td>349909</td>\n",
+       "      <td>21.075</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>12</th>\n",
+       "      <td>13</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Saundercock, Mr. William Henry</td>\n",
+       "      <td>male</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>A/5. 2151</td>\n",
+       "      <td>8.050</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>13</th>\n",
+       "      <td>14</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Andersson, Mr. Anders Johan</td>\n",
+       "      <td>male</td>\n",
+       "      <td>39.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>5</td>\n",
+       "      <td>347082</td>\n",
+       "      <td>31.275</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "    PassengerId  Survived  Pclass                            Name   Sex   Age  \\\n",
+       "0             1         0       3         Braund, Mr. Owen Harris  male  22.0   \n",
+       "4             5         0       3        Allen, Mr. William Henry  male  35.0   \n",
+       "7             8         0       3  Palsson, Master. Gosta Leonard  male   2.0   \n",
+       "12           13         0       3  Saundercock, Mr. William Henry  male  20.0   \n",
+       "13           14         0       3     Andersson, Mr. Anders Johan  male  39.0   \n",
+       "\n",
+       "    SibSp  Parch     Ticket    Fare Cabin Embarked  \n",
+       "0       1      0  A/5 21171   7.250   NaN        S  \n",
+       "4       0      0     373450   8.050   NaN        S  \n",
+       "7       3      1     349909  21.075   NaN        S  \n",
+       "12      0      0  A/5. 2151   8.050   NaN        S  \n",
+       "13      1      5     347082  31.275   NaN        S  "
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[(df['Sex'] == 'male') & (df.Age < 40)].head(5)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "gNrAR3R41PDO"
+   },
+   "source": [
+    "Можно отсортировать этих людей по возрастанию платы за билет. Ascending в данной функции отвечает за сортировку по убыванию (False) или по возрастанию (True)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "xBnWGrQfxdCT"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>PassengerId</th>\n",
+       "      <th>Survived</th>\n",
+       "      <th>Pclass</th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Sex</th>\n",
+       "      <th>Age</th>\n",
+       "      <th>SibSp</th>\n",
+       "      <th>Parch</th>\n",
+       "      <th>Ticket</th>\n",
+       "      <th>Fare</th>\n",
+       "      <th>Cabin</th>\n",
+       "      <th>Embarked</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>271</th>\n",
+       "      <td>272</td>\n",
+       "      <td>1</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Tornquist, Mr. William Henry</td>\n",
+       "      <td>male</td>\n",
+       "      <td>25.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>LINE</td>\n",
+       "      <td>0.0000</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>822</th>\n",
+       "      <td>823</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Reuchlin, Jonkheer. John George</td>\n",
+       "      <td>male</td>\n",
+       "      <td>38.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>19972</td>\n",
+       "      <td>0.0000</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>806</th>\n",
+       "      <td>807</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Andrews, Mr. Thomas Jr</td>\n",
+       "      <td>male</td>\n",
+       "      <td>39.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>112050</td>\n",
+       "      <td>0.0000</td>\n",
+       "      <td>A36</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>179</th>\n",
+       "      <td>180</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Leonard, Mr. Lionel</td>\n",
+       "      <td>male</td>\n",
+       "      <td>36.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>LINE</td>\n",
+       "      <td>0.0000</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>302</th>\n",
+       "      <td>303</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Johnson, Mr. William Cahoone Jr</td>\n",
+       "      <td>male</td>\n",
+       "      <td>19.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>LINE</td>\n",
+       "      <td>0.0000</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>378</th>\n",
+       "      <td>379</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Betros, Mr. Tannous</td>\n",
+       "      <td>male</td>\n",
+       "      <td>20.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2648</td>\n",
+       "      <td>4.0125</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>872</th>\n",
+       "      <td>873</td>\n",
+       "      <td>0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>Carlsson, Mr. Frans Olof</td>\n",
+       "      <td>male</td>\n",
+       "      <td>33.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>695</td>\n",
+       "      <td>5.0000</td>\n",
+       "      <td>B51 B53 B55</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>843</th>\n",
+       "      <td>844</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Lemberopolous, Mr. Peter L</td>\n",
+       "      <td>male</td>\n",
+       "      <td>34.5</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>2683</td>\n",
+       "      <td>6.4375</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>C</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>371</th>\n",
+       "      <td>372</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Wiklund, Mr. Jakob Alfred</td>\n",
+       "      <td>male</td>\n",
+       "      <td>18.0</td>\n",
+       "      <td>1</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3101267</td>\n",
+       "      <td>6.4958</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>202</th>\n",
+       "      <td>203</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3</td>\n",
+       "      <td>Johanson, Mr. Jakob Alfred</td>\n",
+       "      <td>male</td>\n",
+       "      <td>34.0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>0</td>\n",
+       "      <td>3101264</td>\n",
+       "      <td>6.4958</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>S</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     PassengerId  Survived  Pclass                             Name   Sex  \\\n",
+       "271          272         1       3     Tornquist, Mr. William Henry  male   \n",
+       "822          823         0       1  Reuchlin, Jonkheer. John George  male   \n",
+       "806          807         0       1           Andrews, Mr. Thomas Jr  male   \n",
+       "179          180         0       3              Leonard, Mr. Lionel  male   \n",
+       "302          303         0       3  Johnson, Mr. William Cahoone Jr  male   \n",
+       "378          379         0       3              Betros, Mr. Tannous  male   \n",
+       "872          873         0       1         Carlsson, Mr. Frans Olof  male   \n",
+       "843          844         0       3       Lemberopolous, Mr. Peter L  male   \n",
+       "371          372         0       3        Wiklund, Mr. Jakob Alfred  male   \n",
+       "202          203         0       3       Johanson, Mr. Jakob Alfred  male   \n",
+       "\n",
+       "      Age  SibSp  Parch   Ticket    Fare        Cabin Embarked  \n",
+       "271  25.0      0      0     LINE  0.0000          NaN        S  \n",
+       "822  38.0      0      0    19972  0.0000          NaN        S  \n",
+       "806  39.0      0      0   112050  0.0000          A36        S  \n",
+       "179  36.0      0      0     LINE  0.0000          NaN        S  \n",
+       "302  19.0      0      0     LINE  0.0000          NaN        S  \n",
+       "378  20.0      0      0     2648  4.0125          NaN        C  \n",
+       "872  33.0      0      0      695  5.0000  B51 B53 B55        S  \n",
+       "843  34.5      0      0     2683  6.4375          NaN        C  \n",
+       "371  18.0      1      0  3101267  6.4958          NaN        S  \n",
+       "202  34.0      0      0  3101264  6.4958          NaN        S  "
+      ]
+     },
+     "execution_count": 50,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[(df['Sex'] == 'male') & (df.Age < 40)].sort_values(by='Fare',ascending=True).head(10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "oBO-Nhzh2cvL"
+   },
+   "source": [
+    "Можно подсчитать количество пассажиров (а точнее их уникальных номеров) с помощью функции count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "A0qPNXHs12m6"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "344"
+      ]
+     },
+     "execution_count": 51,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[(df['Sex'] == 'male') & (df.Age < 40)].sort_values(by='Fare',ascending=True).PassengerId.count()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "nIYN5Eob3yJz"
+   },
+   "source": [
+    "Также можно быстро вывести распределение переменной Sex с помощью функции value_count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "ryeKmgpO3hSx"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "male      577\n",
+       "female    314\n",
+       "Name: Sex, dtype: int64"
+      ]
+     },
+     "execution_count": 52,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Sex.value_counts()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ACGDsuGOagZt"
+   },
+   "source": [
+    "## Задания"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "6juXJzCA1qFR"
+   },
+   "source": [
+    "### 21. Сколько человек спаслись и сколько погибли?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "vr9y7QQJEvSL"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0    549\n",
+       "1    342\n",
+       "Name: Survived, dtype: int64"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Survived.value_counts()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "ROJJ8MSE2xdh"
+   },
+   "source": [
+    "### 22. Выведите распределение переменной Survived отдельно для мужчин и отдельно для женщин\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "GNTW3sVq2sP3"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x11a8562e8>"
+      ]
+     },
+     "execution_count": 54,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "import matplotlib\n",
+    "df[df.Sex == 'male']['Survived'].hist()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x11a994588>"
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "df[df.Sex == 'female']['Survived'].hist()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "JOxfl_Rc5SPG"
+   },
+   "source": [
+    "### 23. Каковы медиана и стандартное отклонение цен за билет?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "VLS_yn9f4_eL"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "14.4542"
+      ]
+     },
+     "execution_count": 56,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Fare.median()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "49.6934285971809"
+      ]
+     },
+     "execution_count": 57,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Fare.std()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "JMpQ54xk51wN"
+   },
+   "source": [
+    "### 24. Подсчитайте долю выживших среди людей моложе 25 лет и старше 55."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "mzqVFbbE6art"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.39941690962099125"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[(df.Age <= 25) | (df.Age >= 55)]['Survived'] \\\n",
+    "            .value_counts(normalize=True)[1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "c9dMqjki6tWX"
+   },
+   "source": [
+    "### 25. Подсчитайте долю выживших среди мужчин и женщин."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "EuQ3k9_56WTD"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.18890814558058924"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df.Sex == 'male']['Survived'].value_counts(normalize=True)[1]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0.7420382165605095"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df.Sex == 'female']['Survived'].value_counts(normalize=True)[1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "d9HcyxCe8Amb"
+   },
+   "source": [
+    "### 26. В каком городе больше всего село пассажиров?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "Z1qimpFF6914"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'S'"
+      ]
+     },
+     "execution_count": 61,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.Embarked.value_counts().idxmax()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "r7Ev8RJWy0la"
+   },
+   "source": [
+    "### 27. Подсчитайте средний возраст выживших"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "UV2fKrBW8F2W"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "28.343689655172415"
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df[df.Survived == 1]['Age'].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "KA326h6WzEvm"
+   },
+   "source": [
+    "### 28. Подсчитайте средний возраст пассажиров каждого из трех классов\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "8ey0hMZzzd3M"
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Pclass\n",
+       "1    38.233441\n",
+       "2    29.877630\n",
+       "3    25.140620\n",
+       "Name: Age, dtype: float64"
+      ]
+     },
+     "execution_count": 63,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "df.groupby(df.Pclass)['Age'].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "XzwUK8sozykd"
+   },
+   "source": [
+    "### 29. Подсчитайте средний возраст выживших мужчин, купивших билет во 2 класс"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {
+    "colab": {},
+    "colab_type": "code",
+    "id": "C2_Rc8gaztw5"
+   },
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'df' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[0;32m<ipython-input-4-f963e67ae45e>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[0;32m----> 1\u001b[0;31m \u001b[0mdf\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mdf\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mSex\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;34m'male'\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m&\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0mdf\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mPclass\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0;36m2\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m&\u001b[0m \u001b[0;34m(\u001b[0m\u001b[0mdf\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mSurvived\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0;34m'Age'\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmean\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[0;31mNameError\u001b[0m: name 'df' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "df[(df.Sex == 'male') & (df.Pclass == 2) & (df.Survived)]['Age'].mean()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {
+    "colab_type": "text",
+    "id": "caDgfRO1a3_j"
+   },
+   "source": [
+    "### 30. Оцените, как влияет на выживаемость пассажиров наличие их родственников на борту."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "SibSp\n",
+       "0    0.345395\n",
+       "1    0.535885\n",
+       "2    0.464286\n",
+       "3    0.250000\n",
+       "4    0.166667\n",
+       "5         NaN\n",
+       "8         NaN\n",
+       "Name: PassengerId, dtype: float64"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#share of survived passengers by count of siblings\n",
+    "df[df.Survived == 1].groupby('SibSp')['PassengerId'].count() / \\\n",
+    "                df.groupby('SibSp')['PassengerId'].count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "Parch\n",
+       "0    0.343658\n",
+       "1    0.550847\n",
+       "2    0.500000\n",
+       "3    0.600000\n",
+       "4         NaN\n",
+       "5    0.200000\n",
+       "6         NaN\n",
+       "Name: PassengerId, dtype: float64"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#share of survived passengers by count of parents\n",
+    "df[df.Survived == 1].groupby('Parch')['PassengerId'].count() / \\\n",
+    "                df.groupby('Parch')['PassengerId'].count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<matplotlib.axes._subplots.AxesSubplot at 0x11afc5828>"
+      ]
+     },
+     "execution_count": 68,
+     "metadata": {},
+     "output_type": "execute_result"
+    },
+    {
+     "data": {
+      "image/png": "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\n",
+      "text/plain": [
+       "<Figure size 432x288 with 1 Axes>"
+      ]
+     },
+     "metadata": {
+      "needs_background": "light"
+     },
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#0 - without family, 1 - with family\n",
+    "df['family'] = df['Parch'] + df['SibSp']\n",
+    "df['family'].loc[df['family'] > 0] = 1\n",
+    "df['family'].loc[df['family'] == 0] = 0\n",
+    "df.groupby([df.family])['PassengerId'].count().plot(kind='bar')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
